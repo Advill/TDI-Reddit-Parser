@@ -1,19 +1,21 @@
-var request = require("request")
+var request = require('request');
+var events = require('events');
 
-exports.fetch = function (url) {
-    var ret = [];
+exports.fetch = function (url, eventEmitter) {
     request({
         url: url,
         json: true
     }, function(error, response, body) {
         // body contains posts in body.data.children[]
         if(!error && response.statusCode == 200) {
-            ret = body.data.children;
+            eventEmitter.emit('loaded');
+            return body.data.children;
         }
         else {
+            console.log(error);
+            console.log(response.statusCode);
             console.log("Fetch failed!");
-            ret = null;
+            return null;
         }
     });
-    return ret;
 }
