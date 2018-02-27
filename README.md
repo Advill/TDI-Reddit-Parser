@@ -1,14 +1,19 @@
 # TDI-Reddit-Parser
-A Node.js project to parse through reddit based on a search for important 
-information.
+A Node.js project to parse through reddit based on a search for matching  
+titles.
 
 ## Goal
 The goal of this project is an excersize in api design as well as an intro to
-node.js.
+node.js. The program wont be doing anything fancy or laying data out in a nice
+way, it will simply be showing that data can be pulled from reddit and hosted 
+locally.
 
 ## Current State
-At this point, jsontest only imports the json and prints it to the command
-line. I'm still figuring out how I want to get the data ready for viewing, have
-not decided what is important or anything like that yet.
+In its current form, this program has 2 parts, the first being `jsontest.js` 
+which serves as a sort of proof-of-concept and practice at grabbing posts from 
+reddit in a reasonable way. The second is `RedditScraper.js` and 
+`JsonFetcher.js`, which will be the main finished product.
 
-I'm not serving data to localhost or anything yet.
+Right now JsonFetcher.js should be grabbing all the data from /r/guitar/top and
+passing RedditScraper.js only the posts, but I'm having trouble getting them
+from one method to the other.
