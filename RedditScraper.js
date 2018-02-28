@@ -21,11 +21,12 @@ request({
 
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write("hello!");
+    res.write("<html>");
+    res.write("<body>");
+    res.write("<h1>hello!</h1>");
     console.log(posts.length);
     for(var i = 0; i < posts.length; i++) {
-        console.log(posts[i].data.title + "\n");
-        res.write(posts[i].data.title + "\n");
+        res.write("<p>" + posts[i].data.title + "</p>");
     }
     res.end();
 }).listen(8080);
