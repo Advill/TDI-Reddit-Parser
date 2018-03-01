@@ -8,6 +8,9 @@ node.js.
 
 The final program will parse the data from a subreddit and show only relavent
 data where the title contains a string passed into the URL.
+
+the final connection will look like  
+`localhost:8080/redditer/[search term here]`
  
 ## Current State
 The program runs through nodejs, and contains all requirements in 
@@ -18,11 +21,7 @@ more work than it was useful.
 `jsontest.js` is used for some quick testing of how to use `request` and `http`
 and will not be in the finished files.
 
-'JsonFetcher.js` is the intended reading module. While it does what it is
-supposed to, I dont think moving this single method into another file is worth
-the extra work required for it.
-
 ### Running
-Simply run `RedditScraper.js` with node.js, and connect to `localhost:8080`
-and the current top posts from `json.reddit.com/r/guitar/top` will be loaded
-into the web page. 
+Simply run `RedditScraper.js` with node.js, and connect to 
+`localhost:8080/redditer` and the current top posts from 
+`json.reddit.com/r/guitar/top` will be loaded into the web page. 
