@@ -2,7 +2,7 @@ var jf = require('./JsonFetcher.js');
 var http = require ('http');
 var request = require('request');
 
-var url = "http://json.reddit.com/r/guitar/top?count=50"
+var url = "http://json.reddit.com/r/guitar/top?limit=50"
 var posts = [];
 
 request({
@@ -28,10 +28,10 @@ http.createServer(function (req, res) {
     var cnt = 0;
     for(var i = 0; i < posts.length; i++) {
         cnt++;
-        res.write("<h4>" + posts[i].data.title + "</h4>");
+        res.write("<h4><a href=\"" + posts[i].data.url + "\">" + posts[i].data.title + "</a></h4>");
         res.write("<p>Score: " + posts[i].data.score +
-                "  Comments: " + posts[i].data.num_comments +
-                "</p>");
+            " <a href=\"" + posts[i].data.url + "\">Comments: " + 
+            posts[i].data.num_comments + "</a></p>");
     }
     res.write("<p>" + cnt + " posts loaded</p>");
     res.end("</body></html>");
