@@ -4,16 +4,25 @@ titles.
 
 ## Goal
 The goal of this project is an excersize in api design as well as an intro to
-node.js. The program wont be doing anything fancy or laying data out in a nice
-way, it will simply be showing that data can be pulled from reddit and hosted 
-locally.
+node.js.
 
+The final program will parse the data from a subreddit and show only relavent
+data where the title contains a string passed into the URL.
+ 
 ## Current State
-In its current form, this program has 2 parts, the first being `jsontest.js` 
-which serves as a sort of proof-of-concept and practice at grabbing posts from 
-reddit in a reasonable way. The second is `RedditScraper.js` and 
-`JsonFetcher.js`, which will be the main finished product.
+The program runs through nodejs, and contains all requirements in 
+`node_modules`. `RedditScraper.js` is the only file in use currently, as before
+I was attempting to split reading into a separate module, but it ended up being
+more work than it was useful.
 
-Right now JsonFetcher.js should be grabbing all the data from /r/guitar/top and
-passing RedditScraper.js only the posts, but I'm having trouble getting them
-from one method to the other.
+`jsontest.js` is used for some quick testing of how to use `request` and `http`
+and will not be in the finished files.
+
+'JsonFetcher.js` is the intended reading module. While it does what it is
+supposed to, I dont think moving this single method into another file is worth
+the extra work required for it.
+
+### Running
+Simply run `RedditScraper.js` with node.js, and connect to `localhost:8080`
+and the current top posts from `json.reddit.com/r/guitar/top` will be loaded
+into the web page. 
