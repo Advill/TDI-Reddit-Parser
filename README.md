@@ -20,6 +20,9 @@ Simply run `server.js` with node.js, and connect to
 `localhost:8080/redditer` and the current top posts from 
 `json.reddit.com/r/guitar/top` will be loaded into the web page. 
 
-running `localhost:8080/redditer/xyz` where xyz is a search term of your choice
-and the only thing that is displayed will be posts that contain the term in the
-title of the post.
+running `localhost:8080/redditer/xyz` where `xyz` is a search term of your
+choice and the only thing that is displayed will be posts that contain the term
+in the title of the post.
+
+This version of the program will actually give a formatted JSON response,
+so a browser-based JSON vewier will be useful in decoding it.
