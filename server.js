@@ -26,30 +26,33 @@ var getData = function (write, res, search) {
     });
 };
 
+var postToObject = function(post) {
+    var obj = {
+        title: post.data.title,
+        score: post.data.score,
+        author: post.data.author,
+        comments: post.data.num_commments,
+        url: post.data.url
+    };
+    return obj
+};
+
 // write data from the posts array to res 
 var writeData = function(posts, res, searchterm) { 
-    var cnt = 0;
     //if loading of posts failed somehow
     if(posts == null || posts.length == 0) {
-        res.write("<h2>No posts were loaded!</h2>");
         console.log("Invalid posts size!");
     }
+    var list = [];
     // show data for each post, keeping track of how many are actually shown
     for(var i = 0; i < posts.length; i++) {
         //print and increment the counter only if the title includes the search
         if(searchterm == "" || posts[i].data.title.toUpperCase().includes(
             searchterm.toUpperCase())) {
-            cnt++;
-            res.write("<h2><a href=\"" + posts[i].data.url + "\">" +
-                posts[i].data.title + "</a></h2>");
-            res.write("<p>Score: " + posts[i].data.score +
-                " <a href=\"" + posts[i].data.url + "\">Comments: " + 
-                posts[i].data.num_comments + "</a> Submitted by: " + 
-                posts[i].data.author + "</p><hr>");
+            list.push(postToObject(posts[i]));
         }
     }
-    res.write("<p>" + cnt + " posts loaded</p>");
-    res.end("</body></html>");
+    res.write(JSON.stringify(list));
 };
 
 //This is where things begin being executed when the program starts
@@ -60,12 +63,7 @@ http.createServer(function (req, res) {
         if(req.url.indexOf('/redditer') != 0) {
             console.log('redditer not found!');
             res.statuscode = 404;
-            res.send("Incorrect site path!");
         } else {
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.write("<html>");
-            res.write("<body>");
-            res.write("<h1>Current Top posts on Reddit/r/guitar</h1>");
 
             var search = req.url.substring(10);
             console.log(search);
